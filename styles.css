@@ -6,9 +6,9 @@
      --ink-soft   #8B96A5  secondary text, muted slate
      --panel      #161B22  card / sheet surface, raised charcoal
      --line       #2A303C  hairline / rule color
-     --grid       rgba(226,54,54,.05)  faint radiating web pattern
-     --accent     #E23636  spider red (primary accent)
-     --accent-2   #2E6FE2  spider blue (secondary accent)
+     --grid       rgba(255,42,42,.07)  faint radiating web pattern
+     --accent     #FF2A2A  spider red (primary accent)
+     --accent-2   #0074FF  spider blue (secondary accent)
    Type:
      Display: 'Space Grotesk'  — headings, title block
      Body:    'Inter'          — running text
@@ -23,9 +23,9 @@
   --ink-soft:#8B96A5;
   --panel:#161B22;
   --line:#2A303C;
-  --grid: rgba(226,54,54,.05);
-  --accent:#E23636;      /* spider red */
-  --accent-2:#2E6FE2;    /* spider blue */
+  --grid: rgba(255,42,42,.07);
+  --accent:#FF2A2A;      /* spider red */
+  --accent-2:#0074FF;    /* spider blue */
   --radius: 14px;
 }
 
@@ -35,8 +35,8 @@ html{scroll-behavior:smooth;}
 body{
   margin:0;
   background:
-    radial-gradient(circle at 12% -8%, rgba(226,54,54,.09), transparent 32%),
-    radial-gradient(circle at 100% 6%, rgba(46,111,226,.10), transparent 38%),
+    radial-gradient(circle at 12% -8%, rgba(255,42,42,.13), transparent 32%),
+    radial-gradient(circle at 100% 6%, rgba(0,116,255,.15), transparent 38%),
     repeating-conic-gradient(from 0deg at 12% -8%, var(--grid) 0deg 1.2deg, transparent 1.2deg 15deg),
     var(--paper);
   color:var(--ink);
@@ -162,11 +162,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .sheet-nav a.active{
   color:var(--ink);
-  background:linear-gradient(0deg, rgba(226,54,54,.16), rgba(226,54,54,.16));
+  background:linear-gradient(0deg, rgba(255,42,42,.16), rgba(255,42,42,.16));
   box-shadow: inset 0 -2px 0 var(--accent);
   font-weight:600;
 }
-.sheet-nav a:hover{ color:var(--ink); background:rgba(46,111,226,.10); }
+.sheet-nav a:hover{ color:var(--ink); background:rgba(0,116,255,.10); }
 .sheet-nav a:not(.active):hover::after{ transform:scaleX(1); }
 
 /* ---------- hero trace (signature svg motion) ---------- */
@@ -208,7 +208,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .panel::before{
   content:'';
   position:absolute; inset:0;
-  background-image: radial-gradient(rgba(226,54,54,.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255,42,42,.05) 1px, transparent 1px);
   background-size: 7px 7px;
   pointer-events:none;
 }
@@ -427,8 +427,8 @@ footer{
   content:'';
   position:absolute; inset:0;
   background:
-    repeating-linear-gradient(45deg, rgba(226,54,54,.14) 0 2px, transparent 2px 14px),
-    repeating-linear-gradient(-45deg, rgba(46,111,226,.14) 0 2px, transparent 2px 14px);
+    repeating-linear-gradient(45deg, rgba(255,42,42,.14) 0 2px, transparent 2px 14px),
+    repeating-linear-gradient(-45deg, rgba(0,116,255,.14) 0 2px, transparent 2px 14px);
   pointer-events:none;
   animation: web-fade 1.7s ease forwards;
 }
@@ -437,7 +437,7 @@ footer{
 /* ---------- easter egg: spider-sense pulse on fast cursor movement ---------- */
 .spider-sense-overlay{
   position:fixed; inset:0; pointer-events:none; z-index:40;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(226,54,54,.35) 100%);
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(255,42,42,.35) 100%);
   opacity:0;
 }
 .spider-sense-overlay.pulse{ animation: sense-pulse .55s ease; }

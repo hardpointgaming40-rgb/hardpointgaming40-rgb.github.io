@@ -225,12 +225,12 @@
       <rect x="990" y="36" width="90" height="28" fill="#000"/>
       <rect x="1090" y="20" width="36" height="44" fill="#000"/>
       <rect x="1135" y="40" width="65" height="24" fill="#000"/>
-      <rect x="80" y="24" width="4" height="4" fill="#E23636"/>
-      <rect x="230" y="18" width="4" height="4" fill="#2E6FE2"/>
-      <rect x="470" y="40" width="4" height="4" fill="#E23636"/>
-      <rect x="680" y="26" width="4" height="4" fill="#2E6FE2"/>
-      <rect x="870" y="42" width="4" height="4" fill="#E23636"/>
-      <rect x="1010" y="46" width="4" height="4" fill="#2E6FE2"/>
+      <rect x="80" y="24" width="4" height="4" fill="#FF2A2A"/>
+      <rect x="230" y="18" width="4" height="4" fill="#0074FF"/>
+      <rect x="470" y="40" width="4" height="4" fill="#FF2A2A"/>
+      <rect x="680" y="26" width="4" height="4" fill="#0074FF"/>
+      <rect x="870" y="42" width="4" height="4" fill="#FF2A2A"/>
+      <rect x="1010" y="46" width="4" height="4" fill="#0074FF"/>
     `;
     document.body.appendChild(svg);
   }
