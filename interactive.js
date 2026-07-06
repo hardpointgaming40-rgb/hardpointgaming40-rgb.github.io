@@ -199,6 +199,137 @@
     });
   }
 
+  /* ---------- 7. Rooftop skyline silhouette ---------- */
+  function initRooftopSkyline() {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'rooftop-skyline');
+    svg.setAttribute('viewBox', '0 0 1200 64');
+    svg.setAttribute('preserveAspectRatio', 'none');
+    svg.innerHTML = `
+      <rect x="0" y="30" width="60" height="34" fill="#000"/>
+      <rect x="70" y="14" width="40" height="50" fill="#000"/>
+      <rect x="120" y="36" width="70" height="28" fill="#000"/>
+      <rect x="200" y="8" width="34" height="56" fill="#000"/>
+      <rect x="245" y="26" width="55" height="38" fill="#000"/>
+      <rect x="310" y="40" width="90" height="24" fill="#000"/>
+      <rect x="410" y="18" width="36" height="46" fill="#000"/>
+      <rect x="455" y="30" width="60" height="34" fill="#000"/>
+      <rect x="525" y="4" width="30" height="60" fill="#000"/>
+      <rect x="565" y="34" width="80" height="30" fill="#000"/>
+      <rect x="655" y="16" width="42" height="48" fill="#000"/>
+      <rect x="705" y="38" width="60" height="26" fill="#000"/>
+      <rect x="775" y="22" width="34" height="42" fill="#000"/>
+      <rect x="820" y="6" width="30" height="58" fill="#000"/>
+      <rect x="860" y="32" width="70" height="32" fill="#000"/>
+      <rect x="940" y="14" width="40" height="50" fill="#000"/>
+      <rect x="990" y="36" width="90" height="28" fill="#000"/>
+      <rect x="1090" y="20" width="36" height="44" fill="#000"/>
+      <rect x="1135" y="40" width="65" height="24" fill="#000"/>
+      <rect x="80" y="24" width="4" height="4" fill="#E23636"/>
+      <rect x="230" y="18" width="4" height="4" fill="#2E6FE2"/>
+      <rect x="470" y="40" width="4" height="4" fill="#E23636"/>
+      <rect x="680" y="26" width="4" height="4" fill="#2E6FE2"/>
+      <rect x="870" y="42" width="4" height="4" fill="#E23636"/>
+      <rect x="1010" y="46" width="4" height="4" fill="#2E6FE2"/>
+    `;
+    document.body.appendChild(svg);
+  }
+
+  /* ---------- 8. Faint corner web decoration ---------- */
+  function initCornerWeb() {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'corner-web');
+    svg.setAttribute('viewBox', '0 0 150 150');
+    let paths = '';
+    // radiating spokes
+    for (let a = 0; a < 90; a += 15) {
+      const rad = (a * Math.PI) / 180;
+      const x = 150 * Math.cos(rad), y = 150 * Math.sin(rad);
+      paths += `<line x1="0" y1="0" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#8B96A5" stroke-width="1"/>`;
+    }
+    // concentric arcs
+    [30, 60, 95, 135].forEach(r => {
+      paths += `<path d="M ${r} 0 A ${r} ${r} 0 0 1 0 ${r}" fill="none" stroke="#8B96A5" stroke-width="1"/>`;
+    });
+    svg.innerHTML = paths;
+    document.body.appendChild(svg);
+  }
+
+  /* ---------- 9. Web-shooter click effect ---------- */
+  function initWebShooterClicks() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const thwipWords = ['THWIP!', 'THWIP-THWIP!', 'FWIP!'];
+    document.addEventListener('click', e => {
+      const ring = document.createElement('div');
+      ring.className = 'web-shot-ring';
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+      document.body.appendChild(ring);
+      ring.addEventListener('animationend', () => ring.remove());
+
+      if (Math.random() < 0.12) {
+        const text = document.createElement('div');
+        text.className = 'thwip-text';
+        text.textContent = thwipWords[Math.floor(Math.random() * thwipWords.length)];
+        text.style.left = e.clientX + 'px';
+        text.style.top = e.clientY + 'px';
+        document.body.appendChild(text);
+        text.addEventListener('animationend', () => text.remove());
+      }
+    });
+  }
+
+  /* ---------- 10. Dangling spider — appears when you scroll to the bottom ---------- */
+  function initDanglingSpider() {
+    let shown = false;
+    window.addEventListener('scroll', () => {
+      if (shown) return;
+      const nearBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 120;
+      if (!nearBottom) return;
+      shown = true;
+
+      const wrap = document.createElement('div');
+      wrap.className = 'dangling-spider-wrap';
+      const threadLen = 60 + Math.random() * 80;
+      wrap.style.left = (15 + Math.random() * 70) + 'vw';
+      wrap.innerHTML = `
+        <div class="dangling-spider-thread" style="height:${threadLen}px;"></div>
+        <div class="dangling-spider-body">\u{1F577}\uFE0F</div>
+      `;
+      document.body.appendChild(wrap);
+
+      wrap.addEventListener('click', () => {
+        wrap.classList.add('retracting');
+        setTimeout(() => wrap.remove(), 550);
+      });
+    });
+  }
+
+  /* ---------- 11. Hidden keyword easter egg — type "web" anywhere on the page ---------- */
+  function initWebKeywordEgg() {
+    const target = 'web';
+    let progress = '';
+    document.addEventListener('keydown', e => {
+      if (e.key.length !== 1) return;
+      progress = (progress + e.key.toLowerCase()).slice(-target.length);
+      if (progress === target) {
+        progress = '';
+        showMessagePanel('SPIDER-SENSE: TINGLING', [
+          "You went looking for the web, and the web noticed.",
+          "A wise old mentor once said something about power and responsibility \u2014 mostly he meant: back up your work and don't skip the boring parts of a project.",
+          "Now go build something that swings."
+        ]);
+      }
+    });
+  }
+
+  /* ---------- shared message panel (used by the eyebrow egg and the keyword egg) ---------- */
+  function showMessagePanel(title, lines) {
+    if (document.querySelector('.easter-backdrop')) return;
+    showEasterEgg({ title, lines });
+  }
+
+
   function boot() {
     initCrosshair();
     initEasterEgg();
@@ -206,6 +337,11 @@
     initSpiderCrawl();
     initStickyCards();
     initSpiderSense();
+    initRooftopSkyline();
+    initCornerWeb();
+    initWebShooterClicks();
+    initDanglingSpider();
+    initWebKeywordEgg();
   }
 
   if (document.readyState === 'loading') {
