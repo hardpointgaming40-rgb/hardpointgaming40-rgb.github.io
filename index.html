@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Home</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="crop tl"></div><div class="crop tr"></div><div class="crop bl"></div><div class="crop br"></div>
+
+<div class="sheet">
+
+  <div class="title-block">
+    <div class="tb-main">
+      <div class="tb-eyebrow">Portfolio Set — Sheet 01 of 05</div>
+      <h1><span data-bind="name"></span> — Robotics &amp; Automation Engineering</h1>
+    </div>
+    <div class="tb-cells">
+      <div class="tb-cell"><span class="k">Sheet</span><span class="v">01 / 05</span></div>
+      <div class="tb-cell"><span class="k">Rev</span><span class="v">A</span></div>
+      <div class="tb-cell"><span class="k">Issued</span><span class="v">2026</span></div>
+      <div class="tb-cell"><span class="k">Scale</span><span class="v">1:1</span></div>
+    </div>
+  </div>
+
+  <nav class="sheet-nav">
+    <a href="index.html" class="active">01 · HOME</a>
+    <a href="resume.html">02 · RESUME</a>
+    <a href="projects.html">03 · PROJECTS</a>
+    <a href="writing.html">04 · WRITING</a>
+    <a href="contact.html">05 · CONTACT</a>
+  </nav>
+
+  <svg class="trace" viewBox="0 0 992 60" preserveAspectRatio="none">
+    <path d="M0 40 L120 40 L150 15 L340 15 L365 40 L620 40 L648 12 L820 12 L845 40 L992 40" />
+    <circle cx="150" cy="15" r="4"></circle>
+    <circle cx="648" cy="12" r="4"></circle>
+    <circle cx="845" cy="40" r="4"></circle>
+  </svg>
+
+  <p class="mono" style="font-size:.8rem;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase;" data-bind="home.tagline"></p>
+
+  <div class="grid-2" style="margin-top:6px;align-items:start;">
+    <div>
+      <div class="sec-label">Bio</div>
+      <div id="bio-paragraphs"></div>
+      <div class="btn-row">
+        <a href="resume.html" class="btn primary">View resume</a>
+        <a href="projects.html" class="btn">See projects</a>
+        <a href="contact.html" class="btn">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="tb-eyebrow" style="margin-bottom:14px;">Quick specs</div>
+      <ul class="spec-list" data-list="home.quickSpecs">
+        <template>
+          <li><span data-bind="k"></span><span data-bind="v"></span></li>
+        </template>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec-label">What I'm into right now</div>
+  <div class="grid-3" data-list="home.interests">
+    <template>
+      <div class="panel">
+        <h3 style="font-size:1rem;" data-bind="title"></h3>
+        <p style="font-size:.92rem;color:var(--ink-soft);margin:0;" data-bind="body"></p>
+      </div>
+    </template>
+  </div>
+
+  <footer>
+    <span><span data-bind="name"></span> &middot; Robotics &amp; Automation Engineering</span>
+    <span>Sheet 01 / 05 &middot; Rev A &middot; Indore, India</span>
+  </footer>
+
+</div>
+
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="interactive.js"></script>
+<script>
+  // bioParagraphs is a plain array of strings — render it directly here
+  document.addEventListener('DOMContentLoaded', function () {
+    const container = document.getElementById('bio-paragraphs');
+    if (window.SITE && window.SITE.home && window.SITE.home.bioParagraphs) {
+      window.SITE.home.bioParagraphs.forEach(text => {
+        const p = document.createElement('p');
+        p.textContent = text;
+        container.appendChild(p);
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

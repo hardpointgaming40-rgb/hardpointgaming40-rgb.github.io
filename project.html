@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Project</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="crop tl"></div><div class="crop tr"></div><div class="crop bl"></div><div class="crop br"></div>
+
+<div class="sheet">
+
+  <div class="title-block">
+    <div class="tb-main">
+      <div class="tb-eyebrow" id="tb-eyebrow">Portfolio Set — Sheet</div>
+      <h1 id="proj-title">Loading…</h1>
+    </div>
+    <div class="tb-cells">
+      <div class="tb-cell"><span class="k">Sheet</span><span class="v" id="tb-sheet">–</span></div>
+      <div class="tb-cell"><span class="k">Status</span><span class="v" id="tb-status">–</span></div>
+      <div class="tb-cell"><span class="k">Scope</span><span class="v" id="tb-phases">–</span></div>
+      <div class="tb-cell"><span class="k">Stack</span><span class="v" id="tb-stack">–</span></div>
+    </div>
+  </div>
+
+  <nav class="sheet-nav">
+    <a href="index.html">01 · HOME</a>
+    <a href="resume.html">02 · RESUME</a>
+    <a href="projects.html" class="active">03 · PROJECTS</a>
+    <a href="writing.html">04 · WRITING</a>
+    <a href="contact.html">05 · CONTACT</a>
+  </nav>
+
+  <p><a href="projects.html">&larr; Back to Projects</a></p>
+
+  <div class="sec-label">01 — The problem</div>
+  <div class="od-step">
+    <div></div>
+    <div><p id="proj-problem"></p></div>
+  </div>
+
+  <div class="sec-label">02 — What I did</div>
+  <div id="proj-steps"></div>
+
+  <div class="sec-label">03 — The outcome</div>
+  <div class="od-step">
+    <div></div>
+    <div>
+      <p id="proj-outcome"></p>
+      <p id="proj-outcome-note" style="color:var(--ink-soft);"></p>
+    </div>
+  </div>
+
+  <div id="proj-notes-section">
+    <div class="sec-label">Notes</div>
+    <div class="panel"><p id="proj-notes" style="margin:0;"></p></div>
+  </div>
+
+  <footer>
+    <span><span data-bind="name"></span> &middot; <span id="foot-title"></span></span>
+    <span>Sheet <span id="foot-sheet"></span></span>
+  </footer>
+
+</div>
+
+<script src="content.js"></script>
+<script src="interactive.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const p = window.SITE.projects.find(proj => proj.id === id) || window.SITE.projects[0];
+
+    document.getElementById('name-holder-fix'); // no-op guard
+    document.querySelectorAll('[data-bind="name"]').forEach(el => el.textContent = window.SITE.name);
+
+    document.title = p.title;
+    document.getElementById('tb-eyebrow').textContent = `Portfolio Set — Sheet ${p.num}`;
+    document.getElementById('proj-title').textContent = p.title;
+    document.getElementById('tb-sheet').textContent = p.num;
+    document.getElementById('tb-status').textContent = p.status;
+    document.getElementById('tb-phases').textContent = p.phasesCount;
+    document.getElementById('tb-stack').textContent = p.stack;
+    document.getElementById('proj-problem').textContent = p.problem;
+
+    const stepsWrap = document.getElementById('proj-steps');
+    p.steps.forEach(s => {
+      const row = document.createElement('div');
+      row.className = 'od-step';
+      row.innerHTML = `<div class="od-num"></div><div><h3></h3><p></p></div>`;
+      row.querySelector('.od-num').textContent = s.label;
+      row.querySelector('h3').textContent = s.title;
+      row.querySelector('p').textContent = s.body;
+      stepsWrap.appendChild(row);
+    });
+
+    document.getElementById('proj-outcome').textContent = p.outcome;
+    document.getElementById('proj-outcome-note').textContent = p.outcomeNote || '';
+
+    if (!p.notes) {
+      document.getElementById('proj-notes-section').style.display = 'none';
+    } else {
+      document.getElementById('proj-notes').textContent = p.notes;
+    }
+
+    document.getElementById('foot-title').textContent = p.title;
+    document.getElementById('foot-sheet').textContent = p.num;
+  });
+</script>
+
+</body>
+</html>

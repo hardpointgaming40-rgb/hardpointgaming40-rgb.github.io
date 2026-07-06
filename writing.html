@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="crop tl"></div><div class="crop tr"></div><div class="crop bl"></div><div class="crop br"></div>
+
+<div class="sheet">
+
+  <div class="title-block">
+    <div class="tb-main">
+      <div class="tb-eyebrow">Portfolio Set — Sheet 04 of 05</div>
+      <h1>Writing</h1>
+    </div>
+    <div class="tb-cells">
+      <div class="tb-cell"><span class="k">Sheet</span><span class="v">04 / 05</span></div>
+      <div class="tb-cell"><span class="k">Rev</span><span class="v">A</span></div>
+      <div class="tb-cell"><span class="k">Issued</span><span class="v">2026</span></div>
+      <div class="tb-cell"><span class="k">Count</span><span class="v" id="piece-count">–</span></div>
+    </div>
+  </div>
+
+  <nav class="sheet-nav">
+    <a href="index.html">01 · HOME</a>
+    <a href="resume.html">02 · RESUME</a>
+    <a href="projects.html">03 · PROJECTS</a>
+    <a href="writing.html" class="active">04 · WRITING</a>
+    <a href="contact.html">05 · CONTACT</a>
+  </nav>
+
+  <p style="color:var(--ink-soft);max-width:640px;">
+    Short pieces on the questions I end up chasing outside of coursework — mostly history and
+    systems thinking. Add, remove, or rewrite these in content.js.
+  </p>
+
+  <div class="sec-label">Notes</div>
+  <div id="writing-list"></div>
+
+  <footer>
+    <span><span data-bind="name"></span> &middot; Writing</span>
+    <span>Sheet 04 / 05 &middot; Rev A</span>
+  </footer>
+
+</div>
+
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="interactive.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const wrap = document.getElementById('writing-list');
+    if (!window.SITE) return;
+    document.getElementById('piece-count').textContent = window.SITE.writing.length + ' pieces';
+    window.SITE.writing.forEach(piece => {
+      const article = document.createElement('article');
+      article.className = 'panel';
+      article.style.marginBottom = '18px';
+      article.innerHTML = `
+        <div class="tb-eyebrow"></div>
+        <h3 style="font-size:1.1rem;"></h3>
+        <p></p>
+      `;
+      article.querySelector('.tb-eyebrow').textContent = piece.label;
+      article.querySelector('h3').textContent = piece.title;
+      article.querySelector('p').textContent = piece.body;
+      wrap.appendChild(article);
+    });
+  });
+</script>
+
+</body>
+</html>

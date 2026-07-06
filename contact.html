@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="crop tl"></div><div class="crop tr"></div><div class="crop bl"></div><div class="crop br"></div>
+
+<div class="sheet">
+
+  <div class="title-block">
+    <div class="tb-main">
+      <div class="tb-eyebrow">Portfolio Set — Sheet 05 of 05</div>
+      <h1>Contact</h1>
+    </div>
+    <div class="tb-cells">
+      <div class="tb-cell"><span class="k">Sheet</span><span class="v">05 / 05</span></div>
+      <div class="tb-cell"><span class="k">Rev</span><span class="v">A</span></div>
+      <div class="tb-cell"><span class="k">Issued</span><span class="v">2026</span></div>
+      <div class="tb-cell"><span class="k">Status</span><span class="v">Open</span></div>
+    </div>
+  </div>
+
+  <nav class="sheet-nav">
+    <a href="index.html">01 · HOME</a>
+    <a href="resume.html">02 · RESUME</a>
+    <a href="projects.html">03 · PROJECTS</a>
+    <a href="writing.html">04 · WRITING</a>
+    <a href="contact.html" class="active">05 · CONTACT</a>
+  </nav>
+
+  <div class="grid-2" style="align-items:start;">
+
+    <div>
+      <div class="sec-label">Send a message</div>
+      <form id="contact-form">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required>
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit" class="btn primary">Send message</button>
+        <p id="form-status" class="mono" style="font-size:.8rem;color:var(--ink-soft);margin-top:12px;"></p>
+      </form>
+    </div>
+
+    <div>
+      <div class="sec-label">Direct</div>
+      <div class="panel">
+        <ul class="spec-list">
+          <li><span>Email</span><span data-bind="email"></span></li>
+          <li><span>Phone</span><span data-bind="phone"></span></li>
+          <li><span>Location</span><span data-bind="location"></span></li>
+          <li><span>LinkedIn</span><span data-bind="linkedinLabel"></span></li>
+          <li><span>GitHub</span><span data-bind="githubLabel"></span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span><span data-bind="name"></span> &middot; Contact</span>
+    <span>Sheet 05 / 05 &middot; Rev A</span>
+  </footer>
+
+</div>
+
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="interactive.js"></script>
+<script>
+  // NOTE FOR YOU: this form has no backend yet — it's static HTML/CSS/JS.
+  // To make it actually send messages, wire the form action to a service
+  // like Formspree (formspree.io) or EmailJS (emailjs.com) — both have a
+  // free tier and a two-line integration. Until then, this just confirms
+  // the fields validate and shows a placeholder status message.
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('form-status').textContent =
+      'Form captured locally — connect Formspree or EmailJS to actually send this.';
+    this.reset();
+  });
+</script>
+
+</body>
+</html>

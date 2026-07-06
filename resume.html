@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="crop tl"></div><div class="crop tr"></div><div class="crop bl"></div><div class="crop br"></div>
+
+<div class="sheet">
+
+  <div class="title-block">
+    <div class="tb-main">
+      <div class="tb-eyebrow">Portfolio Set — Sheet 02 of 05</div>
+      <h1>Resume</h1>
+    </div>
+    <div class="tb-cells">
+      <div class="tb-cell"><span class="k">Sheet</span><span class="v">02 / 05</span></div>
+      <div class="tb-cell"><span class="k">Rev</span><span class="v">A</span></div>
+      <div class="tb-cell"><span class="k">Issued</span><span class="v">2026</span></div>
+      <div class="tb-cell"><span class="k">Scale</span><span class="v">N.T.S.</span></div>
+    </div>
+  </div>
+
+  <nav class="sheet-nav">
+    <a href="index.html">01 · HOME</a>
+    <a href="resume.html" class="active">02 · RESUME</a>
+    <a href="projects.html">03 · PROJECTS</a>
+    <a href="writing.html">04 · WRITING</a>
+    <a href="contact.html">05 · CONTACT</a>
+  </nav>
+
+  <div class="btn-row no-print" style="margin-top:0;">
+    <button class="btn primary" onclick="window.print()">Download as PDF</button>
+    <a class="btn" href="contact.html">Contact me</a>
+  </div>
+
+  <div class="sec-label">Education</div>
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;">
+      <h3 style="font-size:1.05rem;margin:0;" data-bind="resume.education.degree"></h3>
+      <span class="mono" style="font-size:.8rem;color:var(--ink-soft);" data-bind="resume.education.dates"></span>
+    </div>
+    <p style="margin:8px 0 0;color:var(--ink-soft);" data-bind="resume.education.school"></p>
+    <p style="margin:6px 0 0;" data-bind="resume.education.body"></p>
+  </div>
+
+  <div class="sec-label">Experience</div>
+  <div id="experience-list"></div>
+
+  <div class="sec-label">Skills</div>
+  <div class="grid-3" data-list="resume.skills">
+    <template>
+      <div class="panel">
+        <div class="tb-eyebrow" style="margin-bottom:10px;" data-bind="label"></div>
+        <p style="margin:0;font-size:.92rem;" data-bind="body"></p>
+      </div>
+    </template>
+  </div>
+
+  <div class="sec-label">Skill levels</div>
+  <div class="panel">
+    <div class="skill-chart" id="skill-chart"></div>
+  </div>
+
+  <div class="sec-label">Activities</div>
+  <div class="panel">
+    <ul class="spec-list" data-list="resume.activities">
+      <template>
+        <li><span data-bind="k"></span><span data-bind="v"></span></li>
+      </template>
+    </ul>
+  </div>
+
+  <footer>
+    <span><span data-bind="name"></span> &middot; Resume</span>
+    <span>Sheet 02 / 05 &middot; Rev A</span>
+  </footer>
+
+</div>
+
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="interactive.js"></script>
+<script>
+  // Experience entries have nested bullet lists, built by hand for clarity
+  document.addEventListener('DOMContentLoaded', function () {
+    const list = document.getElementById('experience-list');
+    if (!window.SITE) return;
+    window.SITE.resume.experience.forEach(job => {
+      const panel = document.createElement('div');
+      panel.className = 'panel';
+      panel.style.marginBottom = '16px';
+      panel.innerHTML = `
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;">
+          <h3 style="font-size:1.05rem;margin:0;"></h3>
+          <span class="mono" style="font-size:.8rem;color:var(--ink-soft);"></span>
+        </div>
+        <p style="margin:8px 0 0;color:var(--ink-soft);"></p>
+        <ul style="margin:10px 0 0;padding-left:20px;"></ul>
+      `;
+      panel.querySelector('h3').textContent = job.title;
+      panel.querySelector('.mono').textContent = job.dates;
+      panel.querySelector('p').textContent = job.org;
+      const ul = panel.querySelector('ul');
+      job.bullets.forEach(b => {
+        const li = document.createElement('li');
+        li.textContent = b;
+        ul.appendChild(li);
+      });
+      list.appendChild(panel);
+    });
+  });
+</script>
+
+</body>
+</html>

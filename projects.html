@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="crop tl"></div><div class="crop tr"></div><div class="crop bl"></div><div class="crop br"></div>
+
+<div class="sheet">
+
+  <div class="title-block">
+    <div class="tb-main">
+      <div class="tb-eyebrow">Portfolio Set — Sheet 03 of 05</div>
+      <h1>Projects</h1>
+    </div>
+    <div class="tb-cells">
+      <div class="tb-cell"><span class="k">Sheet</span><span class="v">03 / 05</span></div>
+      <div class="tb-cell"><span class="k">Rev</span><span class="v">A</span></div>
+      <div class="tb-cell"><span class="k">Issued</span><span class="v">2026</span></div>
+      <div class="tb-cell"><span class="k">Count</span><span class="v">03 items</span></div>
+    </div>
+  </div>
+
+  <nav class="sheet-nav">
+    <a href="index.html">01 · HOME</a>
+    <a href="resume.html">02 · RESUME</a>
+    <a href="projects.html" class="active">03 · PROJECTS</a>
+    <a href="writing.html">04 · WRITING</a>
+    <a href="contact.html">05 · CONTACT</a>
+  </nav>
+
+  <p style="color:var(--ink-soft);max-width:640px;">Three sheets, each covering one build: the problem it started from, what I actually did, and where it landed. Click through for the full detail sheet.</p>
+
+  <div class="grid-3" id="project-cards" style="margin-top:20px;"></div>
+
+  <footer>
+    <span><span data-bind="name"></span> &middot; Projects</span>
+    <span>Sheet 03 / 05 &middot; Rev A</span>
+  </footer>
+
+</div>
+
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="interactive.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const wrap = document.getElementById('project-cards');
+    if (!window.SITE) return;
+    window.SITE.projects.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'proj-card';
+      card.innerHTML = `
+        <span class="proj-num">SHEET ${p.num}</span>
+        <a class="card-link" href="project.html?id=${p.id}"></a>
+        <p style="font-size:.9rem;color:var(--ink-soft);margin:0;"></p>
+        <span class="status"></span>
+        <div class="tag-row"></div>
+      `;
+      card.querySelector('.card-link').textContent = p.title;
+      card.querySelector('p').textContent = p.cardDesc;
+      card.querySelector('.status').textContent = p.status;
+      const tagRow = card.querySelector('.tag-row');
+      p.tags.forEach(t => {
+        const span = document.createElement('span');
+        span.className = 'tag';
+        span.textContent = t;
+        tagRow.appendChild(span);
+      });
+      wrap.appendChild(card);
+    });
+  });
+</script>
+
+</body>
+</html>
