@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Content — not public</title>
+<link rel="stylesheet" href="styles.css">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  /* Editor-specific styles — reuses the design tokens from styles.css */
+  .editor-notice{
+    background:var(--panel);
+    border:1px solid var(--accent);
+    border-radius:var(--radius);
+    padding:16px 20px;
+    margin-bottom:30px;
+    font-size:.9rem;
+    color:var(--ink-soft);
+  }
+  .editor-notice strong{ color:var(--ink); }
+
+  .ed-section{ margin-bottom:44px; }
+  .ed-section h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.85rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--accent-2);
+    border-bottom:1px solid var(--line);
+    padding-bottom:10px;
+    margin-bottom:20px;
+  }
+  .ed-section h3{
+    font-size:1rem;
+    margin:26px 0 12px;
+    color:var(--ink);
+  }
+  .ed-section h4{
+    font-size:.85rem;
+    margin:16px 0 8px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  .ed-field{ margin-bottom:16px; }
+  .ed-field label{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.7rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:5px;
+  }
+  .ed-field input, .ed-field textarea{
+    width:100%;
+    padding:9px 11px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:.9rem;
+    border-radius:10px;
+  }
+  .ed-field textarea{ resize:vertical; min-height:60px; }
+
+  .ed-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    margin-bottom:16px;
+    position:relative;
+  }
+  .ed-card-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+  }
+  .ed-card-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.75rem;
+    color:var(--accent-2);
+    letter-spacing:.05em;
+  }
+  .ed-remove{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.7rem;
+    background:none;
+    border:1px solid var(--accent);
+    color:var(--accent);
+    padding:4px 10px;
+    border-radius:999px;
+    cursor:pointer;
+  }
+  .ed-remove:hover{ background:var(--accent); color:var(--panel); }
+  .ed-add{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.8rem;
+    background:none;
+    border:1.5px dashed var(--line);
+    color:var(--ink-soft);
+    padding:10px 16px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    width:100%;
+    margin-top:4px;
+  }
+  .ed-add:hover{ border-color:var(--accent-2); color:var(--ink); }
+
+  .ed-generate-bar{
+    position:sticky;
+    bottom:0;
+    background:var(--panel);
+    border-top:1.5px solid var(--ink);
+    padding:16px 20px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    flex-wrap:wrap;
+    margin:0 -28px;
+    border-radius:0;
+  }
+
+  #output-area{
+    display:none;
+    width:100%;
+    min-height:300px;
+    margin-top:24px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.78rem;
+    padding:16px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:var(--radius);
+  }
+  #download-btn{ display:none; }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="title-block">
+    <div class="tb-main">
+      <div class="tb-eyebrow">Not part of the public site</div>
+      <h1>Edit Content</h1>
+    </div>
+    <div class="tb-cells">
+      <div class="tb-cell"><span class="k">Mode</span><span class="v">Local only</span></div>
+      <div class="tb-cell"><span class="k">Saves to</span><span class="v">Download</span></div>
+    </div>
+  </div>
+
+  <div class="editor-notice">
+    <strong>How this works:</strong> edit anything below, then hit "Generate content.js" at the bottom.
+    Nothing is sent anywhere — this all happens in your browser. Download the generated file,
+    replace your existing <code>content.js</code> with it, and commit/push as usual. Refreshing
+    this page without generating first will lose your changes, so generate and download before
+    you navigate away.
+  </div>
+
+  <div id="editor-root"></div>
+
+  <div class="ed-generate-bar">
+    <button type="button" id="generate-btn" class="btn primary">Generate content.js</button>
+    <button type="button" id="download-btn" class="btn">Download content.js</button>
+    <a href="index.html" class="btn">Back to site</a>
+  </div>
+
+  <textarea id="output-area" readonly></textarea>
+
+</div>
+
+<script src="content.js"></script>
+<script src="editor.js"></script>
+
+</body>
+</html>
