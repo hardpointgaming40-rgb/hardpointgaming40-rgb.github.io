@@ -1,14 +1,14 @@
 /* ==========================================================================
-   DESIGN SYSTEM — "NIGHT WEB"
+   DESIGN SYSTEM — "WEB SLINGER, DAYLIGHT"
    Palette:
-     --paper      #0D1117  near-black, city-at-night background
-     --ink        #ECEFF4  primary text, off-white
-     --ink-soft   #8B96A5  secondary text, muted slate
-     --panel      #161B22  card / sheet surface, raised charcoal
-     --line       #2A303C  hairline / rule color
-     --grid       rgba(255,42,42,.07)  faint radiating web pattern
-     --accent     #FF2A2A  spider red (primary accent)
-     --accent-2   #0074FF  spider blue (secondary accent)
+     --paper      #EAF2FF  bright sky-blue-white background
+     --ink        #12182B  primary text, deep navy-black
+     --ink-soft   #45526B  secondary text, slate blue
+     --panel      #FFFFFF  card / sheet surface, comic-page white
+     --line       #C7D3E6  hairline / rule color
+     --grid       rgba(255,20,64,.06)  faint radiating web pattern
+     --accent     #ED1C24  spider red (primary accent)
+     --accent-2   #1450FF  spider blue (secondary accent)
    Type:
      Display: 'Space Grotesk'  — headings, title block
      Body:    'Inter'          — running text
@@ -18,14 +18,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root{
-  --paper:#0D1117;
-  --ink:#ECEFF4;
-  --ink-soft:#8B96A5;
-  --panel:#161B22;
-  --line:#2A303C;
-  --grid: rgba(255,42,42,.07);
-  --accent:#FF2A2A;      /* spider red */
-  --accent-2:#0074FF;    /* spider blue */
+  --paper:#EAF2FF;
+  --ink:#12182B;
+  --ink-soft:#45526B;
+  --panel:#FFFFFF;
+  --line:#C7D3E6;
+  --grid: rgba(255,20,64,.06);
+  --accent:#ED1C24;      /* spider red */
+  --accent-2:#1450FF;    /* spider blue */
   --radius: 14px;
 }
 
@@ -35,8 +35,8 @@ html{scroll-behavior:smooth;}
 body{
   margin:0;
   background:
-    radial-gradient(circle at 12% -8%, rgba(255,42,42,.13), transparent 32%),
-    radial-gradient(circle at 100% 6%, rgba(0,116,255,.15), transparent 38%),
+    radial-gradient(circle at 12% -8%, rgba(255,20,64,.20), transparent 32%),
+    radial-gradient(circle at 100% 6%, rgba(0,174,255,.22), transparent 38%),
     repeating-conic-gradient(from 0deg at 12% -8%, var(--grid) 0deg 1.2deg, transparent 1.2deg 15deg),
     var(--paper);
   color:var(--ink);
@@ -162,11 +162,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .sheet-nav a.active{
   color:var(--ink);
-  background:linear-gradient(0deg, rgba(255,42,42,.16), rgba(255,42,42,.16));
+  background:linear-gradient(0deg, rgba(255,20,64,.16), rgba(255,20,64,.16));
   box-shadow: inset 0 -2px 0 var(--accent);
   font-weight:600;
 }
-.sheet-nav a:hover{ color:var(--ink); background:rgba(0,116,255,.10); }
+.sheet-nav a:hover{ color:var(--ink); background:rgba(0,174,255,.10); }
 .sheet-nav a:not(.active):hover::after{ transform:scaleX(1); }
 
 /* ---------- hero trace (signature svg motion) ---------- */
@@ -208,7 +208,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .panel::before{
   content:'';
   position:absolute; inset:0;
-  background-image: radial-gradient(rgba(255,42,42,.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255,20,64,.05) 1px, transparent 1px);
   background-size: 7px 7px;
   pointer-events:none;
 }
@@ -427,8 +427,8 @@ footer{
   content:'';
   position:absolute; inset:0;
   background:
-    repeating-linear-gradient(45deg, rgba(255,42,42,.14) 0 2px, transparent 2px 14px),
-    repeating-linear-gradient(-45deg, rgba(0,116,255,.14) 0 2px, transparent 2px 14px);
+    repeating-linear-gradient(45deg, rgba(255,20,64,.14) 0 2px, transparent 2px 14px),
+    repeating-linear-gradient(-45deg, rgba(0,174,255,.14) 0 2px, transparent 2px 14px);
   pointer-events:none;
   animation: web-fade 1.7s ease forwards;
 }
@@ -437,7 +437,7 @@ footer{
 /* ---------- easter egg: spider-sense pulse on fast cursor movement ---------- */
 .spider-sense-overlay{
   position:fixed; inset:0; pointer-events:none; z-index:40;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(255,42,42,.35) 100%);
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(255,20,64,.45) 100%);
   opacity:0;
 }
 .spider-sense-overlay.pulse{ animation: sense-pulse .55s ease; }
