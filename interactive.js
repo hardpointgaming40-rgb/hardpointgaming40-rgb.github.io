@@ -207,25 +207,25 @@
     svg.setAttribute('preserveAspectRatio', 'none');
 
     const buildings = `
-      <rect x="0" y="30" width="60" height="34" fill="#050505"/>
-      <rect x="70" y="14" width="40" height="50" fill="#050505"/>
-      <rect x="120" y="36" width="70" height="28" fill="#050505"/>
-      <rect x="200" y="8" width="34" height="56" fill="#050505"/>
-      <rect x="245" y="26" width="55" height="38" fill="#050505"/>
-      <rect x="310" y="40" width="90" height="24" fill="#050505"/>
-      <rect x="410" y="18" width="36" height="46" fill="#050505"/>
-      <rect x="455" y="30" width="60" height="34" fill="#050505"/>
-      <rect x="525" y="4" width="30" height="60" fill="#050505"/>
-      <rect x="565" y="34" width="80" height="30" fill="#050505"/>
-      <rect x="655" y="16" width="42" height="48" fill="#050505"/>
-      <rect x="705" y="38" width="60" height="26" fill="#050505"/>
-      <rect x="775" y="22" width="34" height="42" fill="#050505"/>
-      <rect x="820" y="6" width="30" height="58" fill="#050505"/>
-      <rect x="860" y="32" width="70" height="32" fill="#050505"/>
-      <rect x="940" y="14" width="40" height="50" fill="#050505"/>
-      <rect x="990" y="36" width="90" height="28" fill="#050505"/>
-      <rect x="1090" y="20" width="36" height="44" fill="#050505"/>
-      <rect x="1135" y="40" width="65" height="24" fill="#050505"/>
+      <rect x="0" y="30" width="60" height="34" fill="#0A1326"/>
+      <rect x="70" y="14" width="40" height="50" fill="#0A1326"/>
+      <rect x="120" y="36" width="70" height="28" fill="#0A1326"/>
+      <rect x="200" y="8" width="34" height="56" fill="#0A1326"/>
+      <rect x="245" y="26" width="55" height="38" fill="#0A1326"/>
+      <rect x="310" y="40" width="90" height="24" fill="#0A1326"/>
+      <rect x="410" y="18" width="36" height="46" fill="#0A1326"/>
+      <rect x="455" y="30" width="60" height="34" fill="#0A1326"/>
+      <rect x="525" y="4" width="30" height="60" fill="#0A1326"/>
+      <rect x="565" y="34" width="80" height="30" fill="#0A1326"/>
+      <rect x="655" y="16" width="42" height="48" fill="#0A1326"/>
+      <rect x="705" y="38" width="60" height="26" fill="#0A1326"/>
+      <rect x="775" y="22" width="34" height="42" fill="#0A1326"/>
+      <rect x="820" y="6" width="30" height="58" fill="#0A1326"/>
+      <rect x="860" y="32" width="70" height="32" fill="#0A1326"/>
+      <rect x="940" y="14" width="40" height="50" fill="#0A1326"/>
+      <rect x="990" y="36" width="90" height="28" fill="#0A1326"/>
+      <rect x="1090" y="20" width="36" height="44" fill="#0A1326"/>
+      <rect x="1135" y="40" width="65" height="24" fill="#0A1326"/>
     `;
 
     // window lights: [x, y, colorVar, delay(s), duration(s)]

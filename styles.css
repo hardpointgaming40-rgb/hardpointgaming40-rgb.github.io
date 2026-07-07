@@ -1,14 +1,14 @@
 /* ==========================================================================
    DESIGN SYSTEM — "HAZARD LINE"
    Palette:
-     --paper      #121212  near-black night background
-     --ink        #F4EFE9  primary text, warm off-white
-     --ink-soft   #B7B0A8  secondary text, warm grey
-     --panel      #1B1B1C  card / sheet surface, charcoal
-     --line       #38393B  hairline / rule color
+     --paper      #16233F  dark navy background (not black)
+     --ink        #F2F4F8  primary text, cool off-white
+     --ink-soft   #A9B4C9  secondary text, light steel-blue
+     --panel      #1F304F  card / sheet surface, lighter navy
+     --line       #35486E  hairline / rule color
      --grid       rgba(232,38,43,.08)  faint red texture
      --accent     #E8262B  hazard red (primary accent)
-     --accent-2   #C7CAD0  steel grey (secondary accent — stands in for "black")
+     --accent-2   #C7CAD0  steel grey (secondary accent)
    Type:
      Display: 'Space Grotesk'  — headings, title block
      Body:    'Inter'          — running text
@@ -18,11 +18,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root{
-  --paper:#121212;
-  --ink:#F4EFE9;
-  --ink-soft:#B7B0A8;
-  --panel:#1B1B1C;
-  --line:#38393B;
+  --paper:#16233F;
+  --ink:#F2F4F8;
+  --ink-soft:#A9B4C9;
+  --panel:#1F304F;
+  --line:#35486E;
   --grid: rgba(232,38,43,.08);
   --accent:#E8262B;      /* hazard red */
   --accent-2:#C7CAD0;    /* steel grey */
