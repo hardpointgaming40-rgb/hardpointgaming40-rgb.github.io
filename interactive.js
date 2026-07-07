@@ -199,39 +199,65 @@
     });
   }
 
-  /* ---------- 7. Rooftop skyline silhouette ---------- */
+  /* ---------- 7. Rooftop skyline silhouette (lights blink) ---------- */
   function initRooftopSkyline() {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('class', 'rooftop-skyline');
     svg.setAttribute('viewBox', '0 0 1200 64');
     svg.setAttribute('preserveAspectRatio', 'none');
-    svg.innerHTML = `
-      <rect x="0" y="30" width="60" height="34" fill="#000"/>
-      <rect x="70" y="14" width="40" height="50" fill="#000"/>
-      <rect x="120" y="36" width="70" height="28" fill="#000"/>
-      <rect x="200" y="8" width="34" height="56" fill="#000"/>
-      <rect x="245" y="26" width="55" height="38" fill="#000"/>
-      <rect x="310" y="40" width="90" height="24" fill="#000"/>
-      <rect x="410" y="18" width="36" height="46" fill="#000"/>
-      <rect x="455" y="30" width="60" height="34" fill="#000"/>
-      <rect x="525" y="4" width="30" height="60" fill="#000"/>
-      <rect x="565" y="34" width="80" height="30" fill="#000"/>
-      <rect x="655" y="16" width="42" height="48" fill="#000"/>
-      <rect x="705" y="38" width="60" height="26" fill="#000"/>
-      <rect x="775" y="22" width="34" height="42" fill="#000"/>
-      <rect x="820" y="6" width="30" height="58" fill="#000"/>
-      <rect x="860" y="32" width="70" height="32" fill="#000"/>
-      <rect x="940" y="14" width="40" height="50" fill="#000"/>
-      <rect x="990" y="36" width="90" height="28" fill="#000"/>
-      <rect x="1090" y="20" width="36" height="44" fill="#000"/>
-      <rect x="1135" y="40" width="65" height="24" fill="#000"/>
-      <rect x="80" y="24" width="4" height="4" fill="#FF2A2A"/>
-      <rect x="230" y="18" width="4" height="4" fill="#0074FF"/>
-      <rect x="470" y="40" width="4" height="4" fill="#FF2A2A"/>
-      <rect x="680" y="26" width="4" height="4" fill="#0074FF"/>
-      <rect x="870" y="42" width="4" height="4" fill="#FF2A2A"/>
-      <rect x="1010" y="46" width="4" height="4" fill="#0074FF"/>
+
+    const buildings = `
+      <rect x="0" y="30" width="60" height="34" fill="#050505"/>
+      <rect x="70" y="14" width="40" height="50" fill="#050505"/>
+      <rect x="120" y="36" width="70" height="28" fill="#050505"/>
+      <rect x="200" y="8" width="34" height="56" fill="#050505"/>
+      <rect x="245" y="26" width="55" height="38" fill="#050505"/>
+      <rect x="310" y="40" width="90" height="24" fill="#050505"/>
+      <rect x="410" y="18" width="36" height="46" fill="#050505"/>
+      <rect x="455" y="30" width="60" height="34" fill="#050505"/>
+      <rect x="525" y="4" width="30" height="60" fill="#050505"/>
+      <rect x="565" y="34" width="80" height="30" fill="#050505"/>
+      <rect x="655" y="16" width="42" height="48" fill="#050505"/>
+      <rect x="705" y="38" width="60" height="26" fill="#050505"/>
+      <rect x="775" y="22" width="34" height="42" fill="#050505"/>
+      <rect x="820" y="6" width="30" height="58" fill="#050505"/>
+      <rect x="860" y="32" width="70" height="32" fill="#050505"/>
+      <rect x="940" y="14" width="40" height="50" fill="#050505"/>
+      <rect x="990" y="36" width="90" height="28" fill="#050505"/>
+      <rect x="1090" y="20" width="36" height="44" fill="#050505"/>
+      <rect x="1135" y="40" width="65" height="24" fill="#050505"/>
     `;
+
+    // window lights: [x, y, colorVar, delay(s), duration(s)]
+    const lights = [
+      [14, 40, 'var(--accent)', 0,    2.2],
+      [30, 48, 'var(--ink)',    .6,   2.8],
+      [80, 24, 'var(--accent)', 1.1,  2.0],
+      [95, 40, 'var(--ink)',    .3,   3.1],
+      [135, 46, 'var(--ink)',   1.6,  2.4],
+      [230, 18, 'var(--accent)', .8,  2.6],
+      [255, 36, 'var(--ink)',   0,    2.1],
+      [325, 48, 'var(--accent)', 1.3, 2.9],
+      [420, 28, 'var(--ink)',   .5,   2.3],
+      [470, 40, 'var(--accent)', 1.8, 2.0],
+      [535, 16, 'var(--ink)',   .2,   2.7],
+      [580, 44, 'var(--accent)', 1.0, 2.5],
+      [665, 26, 'var(--ink)',   .9,   3.0],
+      [720, 48, 'var(--accent)', .4,  2.2],
+      [830, 18, 'var(--ink)',   1.4,  2.6],
+      [875, 42, 'var(--accent)', 0,   2.4],
+      [955, 26, 'var(--ink)',   .7,   2.0],
+      [1010, 46, 'var(--accent)', 1.5, 2.8],
+      [1105, 30, 'var(--ink)',  .3,   2.3],
+      [1150, 48, 'var(--accent)', 1.1, 2.6]
+    ];
+
+    const lightRects = lights.map(([x, y, color, delay, dur]) =>
+      `<rect x="${x}" y="${y}" width="4" height="4" fill="${color}" class="sky-light"
+        style="animation-delay:${delay}s; animation-duration:${dur}s;"/>`
+    ).join('');
+
+    svg.innerHTML = buildings + lightRects;
     document.body.appendChild(svg);
   }
 

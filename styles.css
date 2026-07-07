@@ -1,14 +1,14 @@
 /* ==========================================================================
-   DESIGN SYSTEM — "WEB SLINGER, DAYLIGHT"
+   DESIGN SYSTEM — "HAZARD LINE"
    Palette:
-     --paper      #EAF2FF  bright sky-blue-white background
-     --ink        #12182B  primary text, deep navy-black
-     --ink-soft   #45526B  secondary text, slate blue
-     --panel      #FFFFFF  card / sheet surface, comic-page white
-     --line       #C7D3E6  hairline / rule color
-     --grid       rgba(255,20,64,.06)  faint radiating web pattern
-     --accent     #ED1C24  spider red (primary accent)
-     --accent-2   #1450FF  spider blue (secondary accent)
+     --paper      #121212  near-black night background
+     --ink        #F4EFE9  primary text, warm off-white
+     --ink-soft   #B7B0A8  secondary text, warm grey
+     --panel      #1B1B1C  card / sheet surface, charcoal
+     --line       #38393B  hairline / rule color
+     --grid       rgba(232,38,43,.08)  faint red texture
+     --accent     #E8262B  hazard red (primary accent)
+     --accent-2   #C7CAD0  steel grey (secondary accent — stands in for "black")
    Type:
      Display: 'Space Grotesk'  — headings, title block
      Body:    'Inter'          — running text
@@ -18,14 +18,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root{
-  --paper:#EAF2FF;
-  --ink:#12182B;
-  --ink-soft:#45526B;
-  --panel:#FFFFFF;
-  --line:#C7D3E6;
-  --grid: rgba(255,20,64,.06);
-  --accent:#ED1C24;      /* spider red */
-  --accent-2:#1450FF;    /* spider blue */
+  --paper:#121212;
+  --ink:#F4EFE9;
+  --ink-soft:#B7B0A8;
+  --panel:#1B1B1C;
+  --line:#38393B;
+  --grid: rgba(232,38,43,.08);
+  --accent:#E8262B;      /* hazard red */
+  --accent-2:#C7CAD0;    /* steel grey */
   --radius: 14px;
 }
 
@@ -35,8 +35,8 @@ html{scroll-behavior:smooth;}
 body{
   margin:0;
   background:
-    radial-gradient(circle at 12% -8%, rgba(255,20,64,.20), transparent 32%),
-    radial-gradient(circle at 100% 6%, rgba(0,174,255,.22), transparent 38%),
+    radial-gradient(circle at 12% -8%, rgba(232,38,43,.18), transparent 34%),
+    radial-gradient(circle at 100% 10%, rgba(232,38,43,.10), transparent 40%),
     repeating-conic-gradient(from 0deg at 12% -8%, var(--grid) 0deg 1.2deg, transparent 1.2deg 15deg),
     var(--paper);
   color:var(--ink);
@@ -45,6 +45,18 @@ body{
   line-height:1.55;
   -webkit-font-smoothing:antialiased;
 }
+
+/* hazard-tape frame — echoes the reference stripe photo top & bottom of every page */
+body::before, body::after{
+  content:'';
+  position:fixed; left:0; right:0;
+  height:9px;
+  background:repeating-linear-gradient(45deg, var(--accent) 0 14px, #0A0A0A 14px 28px);
+  z-index:70;
+  pointer-events:none;
+}
+body::before{ top:0; }
+body::after{ bottom:0; }
 
 h1,h2,h3,h4{
   font-family:'Space Grotesk', sans-serif;
@@ -166,7 +178,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   box-shadow: inset 0 -2px 0 var(--accent);
   font-weight:600;
 }
-.sheet-nav a:hover{ color:var(--ink); background:rgba(0,174,255,.10); }
+.sheet-nav a:hover{ color:var(--ink); background:rgba(232,38,43,.10); }
 .sheet-nav a:not(.active):hover::after{ transform:scaleX(1); }
 
 /* ---------- hero trace (signature svg motion) ---------- */
@@ -428,7 +440,7 @@ footer{
   position:absolute; inset:0;
   background:
     repeating-linear-gradient(45deg, rgba(255,20,64,.14) 0 2px, transparent 2px 14px),
-    repeating-linear-gradient(-45deg, rgba(0,174,255,.14) 0 2px, transparent 2px 14px);
+    repeating-linear-gradient(-45deg, rgba(199,202,208,.14) 0 2px, transparent 2px 14px);
   pointer-events:none;
   animation: web-fade 1.7s ease forwards;
 }
@@ -450,7 +462,19 @@ footer{
   height:64px;
   z-index:1;
   pointer-events:none;
-  opacity:.55;
+  opacity:.9;
+}
+.sky-light{
+  animation-name: sky-blink;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes sky-blink{
+  0%, 100%{ opacity:1; }
+  50%{ opacity:.12; }
+}
+@media (prefers-reduced-motion: reduce){
+  .sky-light{ animation:none; opacity:1; }
 }
 
 /* ---------- faint corner web decoration ---------- */
